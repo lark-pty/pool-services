@@ -21,16 +21,96 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
+            padding-top: 70px; /* Space for fixed top navbar */
+        }
+
+        /* Top Navigation Bar & Hamburger Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 2rem;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--cyan-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-logo img {
+            height: 35px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--cyan-primary);
+            background-color: rgba(0, 240, 255, 0.05);
+        }
+
+        /* Hamburger Menu Toggle (Hidden by default on desktop) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+        .menu-toggle .bar {
+            height: 3px;
+            width: 100%;
+            background-color: var(--cyan-primary);
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
         header {
             text-align: center;
-            padding: 5rem 2rem 3rem 2rem;
+            padding: 4rem 2rem 3rem 2rem;
             border-bottom: 1px solid var(--border-color);
             background: linear-gradient(180deg, #0e172a 0%, var(--bg-color) 100%);
         }
@@ -300,7 +380,47 @@
             letter-spacing: 1px;
         }
 
+        /* Responsive Breakpoints & Mobile Hamburger Styles */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-bg);
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 0;
+                text-align: center;
+                gap: 5px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu a {
+                padding: 0.8rem;
+                display: block;
+            }
+
+            /* Hamburger animation when active */
+            .menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
             header h1 { font-size: 2rem; }
             .container { padding: 2rem 1.5rem; }
             .feedback-section,
@@ -311,70 +431,47 @@
             .submit-button,
             .form-note { grid-column: auto; }
         }
-		/* Enables smooth scrolling when a link is tapped */
-		html {
-		  scroll-behavior: smooth;
-		}
-
-		/* Styles the navigation container for mobile screens */
-		.mobile-nav {
-		  display: flex;
-		  flex-wrap: wrap;
-		  justify-content: center;
-		  gap: 10px;
-		  padding: 15px;
-		  background-color: #f8f9fa; /* Light background to separate from content */
-		  border-bottom: 1px solid #ddd;
-		}
-
-		/* Styles the individual menu buttons */
-		.mobile-nav a {
-		  text-decoration: none;
-		  color: #007791; /* Replace with your primary brand color */
-		  font-weight: bold;
-		  font-size: 14px;
-		  padding: 8px 12px;
-		  border: 1px solid #007791;
-		  border-radius: 4px;
-		  background-color: #ffffff;
-		  white-space: nowrap;
-		  transition: all 0.2s ease;
-		}
-
-		/* Visual feedback when a user taps/hovers */
-		.mobile-nav a:hover, .mobile-nav a:active {
-		  background-color: #007791;
-		  color: #ffffff;
-		}
-
     </style>
 </head>
 <body>
 
+    <!-- Fixed Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span>🌊 "M" Pool Services</span>
+        </div>
+        
+        <!-- Hamburger Icon Button -->
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Navigation Links -->
+        <ul class="nav-menu" id="nav-links">
+            <li><a href="#routine"> Cleaning</a></li>
+            <li><a href="#chemistry"> Chemistry</a></li>
+            <li><a href="#equipment"> Repairs</a></li>
+            <li><a href="#seasonal">Specialty</a></li>
+            <li><a href="#customers">Customers</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
     <header>
         <div class="logo-placeholder">
-            <img src="Logo-01.jpg" width="250" height="136" alt="Servicios de Piscinas logo">
+            <img src="logo-lge.jpg" alt="Servicios de Piscinas logo">
         </div>
-        <h1>POOL SERVICES</h1>
-        <p>Heavy-Duty Pool Systems &amp; Care</p>
+        <h1>Professional Pool Care</h1>
     </header>
-
-	<nav class="mobile-nav">
-	  <a href="#routine">Routine Cleaning</a>
-	  <a href="#chemistry">Water Chemistry</a>
-	  <a href="#equipment">Equipment Repair</a>
-	  <a href="#seasonal">Specialty Services</a>
-	  <a href="#customers">Customer Input</a>
-	  <a href="#contact">Contact Us</a>
-	</nav>
-
 	
     <main class="container">
         <div class="services-grid">
             <div class="service-card">
                 <div>
                     <div class="service-icon">🌊</div>
-					<h3 id="routine">Routine Cleaning & Maintenance</h3>
+                    <h3 id="routine">Routine Cleaning &amp; Maintenance</h3>
                     <p>Complete physical debris extraction to maintain pristine water aesthetics and surface cleanliness. Includes skimming, vacuuming, wall brushing, and basket clear-outs.</p>
                 </div>
                 <div class="price-tag">
@@ -426,7 +523,7 @@
         </section>
 
         <section class="feedback-section" aria-labelledby="feedback-heading">
-            <h2 class="section-heading" id="feedback-heading customers">Customer Feedback &amp; Comments</h2>
+            <h2 id="customers" class="section-heading" id="feedback-heading">Customer Feedback &amp; Comments</h2>
             <div class="feedback-grid">
                 <article class="feedback-card">
                     <blockquote>“This is hands-down a very reliable pool service we’ve ever used. They show up on time every week, communicate great, and leave our pool absolutely sparkling. It’s such a relief not having to worry about chemical balances anymore. 10/10 service!”</blockquote>
@@ -439,87 +536,100 @@
             </div>
         </section>
 
-        <section class="estimate-section" aria-labelledby="estimate-heading">
-            <h2 class="section-heading" id="estimate-heading contact">Request an Estimate</h2>
-            <form class="estimate-form" id="estimate-form" action="mailto:lraymondo@gmail.com" method="post" enctype="text/plain">
-                <div class="form-field">
-                    <label for="full-name">Full Name</label>
-                    <input type="text" id="full-name" name="Full Name" autocomplete="name" required>
-                </div>
+ <section class="estimate-section" aria-labelledby="estimate-heading">
+    <h2 id="estimate-heading" class="section-heading">Request an Estimate</h2>
+    <form class="estimate-form" id="estimate-form">
+        <div class="form-field">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="Full Name" autocomplete="name" required>
+        </div>
 
-                <div class="form-field">
-                    <label for="email">eMail</label>
-                    <input type="email" id="email" name="eMail" autocomplete="email" required>
-                </div>
+        <div class="form-field">
+            <label for="email">eMail</label>
+            <input type="email" id="email" name="eMail" autocomplete="email" required>
+        </div>
 
-                <div class="form-field">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="Phone Number" autocomplete="tel" required>
-                </div>
+        <div class="form-field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="Phone Number" autocomplete="tel" required>
+        </div>
 
-                <div class="form-field">
-                    <label for="system-profile">Requested System Profile</label>
-                    <select id="system-profile" name="Requested System Profile" required>
-                        <option value="" selected disabled>Select a service</option>
-                        <option>Routine Cleaning &amp; Maintenance</option>
-                        <option>Water Chemistry &amp; Balancing</option>
-                        <option>Equipment Inspection &amp; Repair</option>
-                        <option>Seasonal &amp; Specialty Services</option>
-                    </select>
-                </div>
+        <div class="form-field">
+            <label for="system-profile">Requested System Profile</label>
+            <select id="system-profile" name="Requested System Profile" required>
+                <option value="" selected disabled>Select a service</option>
+                <option>Routine Cleaning &amp; Maintenance</option>
+                <option>Water Chemistry &amp; Balancing</option>
+                <option>Equipment Inspection &amp; Repair</option>
+                <option>Seasonal &amp; Specialty Services</option>
+            </select>
+        </div>
 
-                <div class="form-field full-width">
-                    <label for="pool-details">Pool Details &amp; Site Conditions</label>
-                    <textarea id="pool-details" name="Pool Details &amp; Site Conditions" placeholder="Please describe your pool, equipment, current conditions, and any specific concerns."></textarea>
-                </div>
+        <div class="form-field full-width">
+            <label for="pool-details">Pool Details &amp; Site Conditions</label>
+            <textarea id="pool-details" name="Pool Details &amp; Site Conditions" placeholder="Please describe your pool, equipment, current conditions, and any specific concerns."></textarea>
+        </div>
 
-                <button class="submit-button" type="submit">Submit Estimate Request</button>
-                <p class="form-note">Submitting this form opens your default email application with the request addressed to lraymondo@gmail.com.</p>
-            </form>
-        </section>
-    </main>
+        <button class="submit-button" type="submit">Submit</button>
+        <p class="form-note">Submitting this form opens your default email application with the request addressed to an "M" Pool Services representative.</p>
+    </form>
+</section>    </main>
 
+    <!-- Script to handle Form Submission & Mobile Hamburger Toggle -->
     <script>
-        document.getElementById('estimate-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
 
-            const form = event.currentTarget;
-            const service = form.elements['Requested System Profile'].value;
-            const subject = `Estimate Request - ${service}`;
-            const body = [
-                'SERVICIOS DE PISCINAS',
-                'ESTIMATE REQUEST',
-                '========================',
-                '',
-                'Full Name',
-                form.elements['Full Name'].value,
-                '',
-                'eMail',
-                form.elements['eMail'].value,
-                '',
-                'Phone Number',
-                form.elements['Phone Number'].value,
-                '',
-                'Requested System Profile',
-                service,
-                '',
-                'Pool Details & Site Conditions',
-                form.elements['Pool Details & Site Conditions'].value,
-                '',
-                '========================',
-                'Thank you for contacting Servicios de Piscinas.'
-            ].join('\\n');
-
-            window.location.href = `mailto:lraymondo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
+
+        // Close mobile menu automatically when a link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+ document.getElementById('estimate-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const service = form.elements['Requested System Profile'].value;
+    const fullName = form.elements['Full Name'].value;
+    const email = form.elements['eMail'].value;
+    const phone = form.elements['Phone Number'].value;
+    const details = form.elements['Pool Details & Site Conditions'].value || 'None provided';
+
+    const subject = `INQUIRY ABOUT: ${service}`;
+    const body = [
+        '----------------------------------------',
+        '   "M" SERVICIOS DE PISCINAS - INQUIRY',
+        '----------------------------------------',
+        '',
+        `• Service Requested: ${service}`,
+        '',
+        'CUSTOMER INFORMATION:',
+        `  - Full Name : ${fullName}`,
+        `  - eMail     : ${email}`,
+        `  - Phone     : ${phone}`,
+        '',
+        'POOL DETAILS & SITE CONDITIONS:',
+        `  ${details}`,
+        '',
+        '----------------------------------------',
+        'Thank you for contacting "M" Servicios de Piscinas.'
+    ].join('\n');
+
+    window.location.href = `mailto:Oquendomanuel269@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
     </script>
-    </main>
 
     <footer>
-        <p>&copy; <span id="copyright-year"></span> "M" POOL SERVICES. All Rights Reserved.</p>
-<p>Designed & developed by <a href="mailto:lraymondo@gmail.com?Subject=SMJ Inspirations - Design Inquiry" style="color: white; text-decoration: underline;">SMJ Inspirations</a></p>
-        </p>
-        </p>
+        <p>&copy; <span id="copyright-year">2026</span> "M" POOL SERVICES. All Rights Reserved.</p>
+        <p>Designed &amp; developed by <a href="mailto:Oquendomanuel269@gmail.com?Subject=SMJ Inspirations - Design Inquiry" style="color: white; text-decoration: underline;">SMJ Inspirations</a></p>
     </footer>
 
 </body>
