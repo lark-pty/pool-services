@@ -311,6 +311,44 @@
             .submit-button,
             .form-note { grid-column: auto; }
         }
+		
+		/* Enables smooth scrolling when a link is tapped */
+		html {
+		  scroll-behavior: smooth;
+		}
+
+		/* Styles the navigation container for mobile screens */
+		.mobile-nav {
+		  display: flex;
+		  flex-wrap: wrap;
+		  justify-content: center;
+		  gap: 10px;
+		  padding: 15px;
+		  background-color: #f8f9fa; /* Light background to separate from content */
+		  border-bottom: 1px solid #ddd;
+		}
+
+		/* Styles the individual menu buttons */
+		.mobile-nav a {
+		  text-decoration: none;
+		  color: #007791; /* Replace with your primary brand color */
+		  font-weight: bold;
+		  font-size: 14px;
+		  padding: 8px 12px;
+		  border: 1px solid #007791;
+		  border-radius: 4px;
+		  background-color: #ffffff;
+		  white-space: nowrap;
+		  transition: all 0.2s ease;
+		}
+
+		/* Visual feedback when a user taps/hovers */
+		.mobile-nav a:hover, .mobile-nav a:active {
+		  background-color: #007791;
+		  color: #ffffff;
+		}
+
+		
     </style>
 </head>
 <body>
@@ -322,12 +360,20 @@
         <h1>Sistemas y mantenimiento de piscinas</h1>
     </header>
 
+	<nav class="mobile-nav">
+	  <a href="#routine">Limpieza Rutinaria</a>
+	  <a href="#chemistry">Equilibrio Químico</a>
+	  <a href="#equipment">Reparaciones</a>
+	  <a href="#seasonal">Servicios Especializados</a>
+	</nav>
+
+	
     <main class="container">
         <div class="services-grid">
             <div class="service-card">
                 <div>
                     <div class="service-icon">🌊</div>
-                    <h3>Limpieza y mantenimiento rutinario</h3>
+                    <h3 id="routine">Limpieza y mantenimiento rutinario</h3>
                     <p>Extracción completa de residuos físicos para mantener una estética impecable del agua y la limpieza de la superficie. Incluye la retirada de residuos flotantes, aspirado, cepillado de paredes y vaciado de cestas.</p>
                 </div>
                 <div class="price-tag">
@@ -339,7 +385,7 @@
             <div class="service-card">
                 <div>
                     <div class="service-icon">🧪</div>
-                    <h3>Química del agua y equilibrio químico</h3>
+                    <h3 id="chemistry">Química del agua y equilibrio químico</h3>
                     <p>Ajustes precisos orientados a alcanzar los parámetros óptimos de saneamiento. Verificación integral y correcciones de equilibrio para los niveles de pH, cloro, alcalinidad y dureza cálcica.</p>
                 </div>
                 <div class="price-tag">
@@ -351,7 +397,7 @@
             <div class="service-card">
                 <div>
                     <div class="service-icon">⚙️</div>
-                    <h3>Inspección y reparación de equipos</h3>
+                    <h3 id="equipment">Inspección y reparación de equipos</h3>
                     <p>Diagnósticos de verificación mecánica para operaciones de alta presión. Abarca diagnósticos funcionales de bombas, filtros de presión, válvulas y componentes eléctricos de gran tamaño.</p>
                 </div>
                 <div class="price-tag">
@@ -363,7 +409,7 @@
             <div class="service-card">
                 <div>
                     <div class="service-icon">☀️</div>
-                    <h3>Servicios estacionales y especializados</h3>
+                    <h3 id="seasonal">Servicios estacionales y especializados</h3>
                     <p>Servicios de restauración integral y puesta a punto operativa. Diseñados para la apertura en primavera, el cierre en invierno, el vaciado seguro de los sistemas y tratamientos intensivos para la eliminación de algas (desde las verdes hasta las azules).</p>
                 </div>
                 <div class="price-tag">

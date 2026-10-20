@@ -311,6 +311,42 @@
             .submit-button,
             .form-note { grid-column: auto; }
         }
+		/* Enables smooth scrolling when a link is tapped */
+		html {
+		  scroll-behavior: smooth;
+		}
+
+		/* Styles the navigation container for mobile screens */
+		.mobile-nav {
+		  display: flex;
+		  flex-wrap: wrap;
+		  justify-content: center;
+		  gap: 10px;
+		  padding: 15px;
+		  background-color: #f8f9fa; /* Light background to separate from content */
+		  border-bottom: 1px solid #ddd;
+		}
+
+		/* Styles the individual menu buttons */
+		.mobile-nav a {
+		  text-decoration: none;
+		  color: #007791; /* Replace with your primary brand color */
+		  font-weight: bold;
+		  font-size: 14px;
+		  padding: 8px 12px;
+		  border: 1px solid #007791;
+		  border-radius: 4px;
+		  background-color: #ffffff;
+		  white-space: nowrap;
+		  transition: all 0.2s ease;
+		}
+
+		/* Visual feedback when a user taps/hovers */
+		.mobile-nav a:hover, .mobile-nav a:active {
+		  background-color: #007791;
+		  color: #ffffff;
+		}
+
     </style>
 </head>
 <body>
@@ -323,12 +359,22 @@
         <p>Heavy-Duty Pool Systems &amp; Care</p>
     </header>
 
+	<nav class="mobile-nav">
+	  <a href="#routine">Routine Cleaning</a>
+	  <a href="#chemistry">Water Chemistry</a>
+	  <a href="#equipment">Equipment Repair</a>
+	  <a href="#seasonal">Specialty Services</a>
+	  <a href="#customers">Customer Input</a>
+	  <a href="#contact">Contact Us</a>
+	</nav>
+
+	
     <main class="container">
         <div class="services-grid">
             <div class="service-card">
                 <div>
                     <div class="service-icon">🌊</div>
-                    <h3>Routine Cleaning &amp; Maintenance</h3>
+					<h3 id="routine">Routine Cleaning & Maintenance</h3>
                     <p>Complete physical debris extraction to maintain pristine water aesthetics and surface cleanliness. Includes skimming, vacuuming, wall brushing, and basket clear-outs.</p>
                 </div>
                 <div class="price-tag">
@@ -340,7 +386,7 @@
             <div class="service-card">
                 <div>
                     <div class="service-icon">🧪</div>
-                    <h3>Water Chemistry &amp; Chemical Balancing</h3>
+                    <h3 id="chemistry">Water Chemistry &amp; Chemical Balancing</h3>
                     <p>Precise adjustments targeting optimal sanitation parameters. Complete verification and balance corrections for pH, chlorine, alkalinity, and calcium hardness profiles.</p>
                 </div>
                 <div class="price-tag">
@@ -352,7 +398,7 @@
             <div class="service-card">
                 <div>
                     <div class="service-icon">⚙️</div>
-                    <h3>Equipment Inspection &amp; Repair</h3>
+                    <h3 id="equipment">Equipment Inspection &amp; Repair</h3>
                     <p>Mechanical verification diagnostics for high-pressure operations. Covers functional diagnostics on pumps, pressure filters, valves, and heavy electrical components.</p>
                 </div>
                 <div class="price-tag">
@@ -364,7 +410,7 @@
             <div class="service-card">
                 <div>
                     <div class="service-icon">☀️</div>
-                    <h3>Seasonal &amp; Specialty Services</h3>
+                    <h3 id="seasonal">Seasonal &amp; Specialty Services</h3>
                     <p>Heavy restoration and operational readiness services. Designed for spring openings, winter closures, safe system drainages, and severe green-to-blue algae elimination treatments.</p>
                 </div>
                 <div class="price-tag">
@@ -380,11 +426,11 @@
         </section>
 
         <section class="feedback-section" aria-labelledby="feedback-heading">
-            <h2 class="section-heading" id="feedback-heading">Customer Feedback &amp; Comments</h2>
+            <h2 class="section-heading" id="feedback-heading customers">Customer Feedback &amp; Comments</h2>
             <div class="feedback-grid">
                 <article class="feedback-card">
                     <blockquote>“This is hands-down a very reliable pool service we’ve ever used. They show up on time every week, communicate great, and leave our pool absolutely sparkling. It’s such a relief not having to worry about chemical balances anymore. 10/10 service!”</blockquote>
-                    <cite>Leyla R. — VCS Homeowner</cite>
+                    <cite>Leyla R. —  Homeowner</cite>
                 </article>
                 <article class="feedback-card">
                     <blockquote>“They rescued our equipment array after a massive pump failure. They came out rapidly for an inspection, diagnosed the electrical load faults, and had the system running smoothly.”</blockquote>
@@ -394,7 +440,7 @@
         </section>
 
         <section class="estimate-section" aria-labelledby="estimate-heading">
-            <h2 class="section-heading" id="estimate-heading">Request an Estimate</h2>
+            <h2 class="section-heading" id="estimate-heading contact">Request an Estimate</h2>
             <form class="estimate-form" id="estimate-form" action="mailto:lraymondo@gmail.com" method="post" enctype="text/plain">
                 <div class="form-field">
                     <label for="full-name">Full Name</label>
