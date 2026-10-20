@@ -570,8 +570,8 @@
             <textarea id="pool-details" name="Pool Details &amp; Site Conditions" placeholder="Please describe your pool, equipment, current conditions, and any specific concerns."></textarea>
         </div>
 
-        <button class="submit-button" type="submit">Submit Estimate Request</button>
-        <p class="form-note">Submitting this form opens your default email application with the request addressed to lraymondo@gmail.com.</p>
+        <button class="submit-button" type="submit">Submit</button>
+        <p class="form-note">Submitting this form opens your default email application with the request addressed to an "M" Pool Services representative.</p>
     </form>
 </section>    </main>
 
@@ -603,10 +603,10 @@
     const phone = form.elements['Phone Number'].value;
     const details = form.elements['Pool Details & Site Conditions'].value || 'None provided';
 
-    const subject = `New Estimate Request: ${service}`;
+    const subject = `INQUIRY ABOUT: ${service}`;
     const body = [
         '----------------------------------------',
-        '   SERVICIOS DE PISCINAS - NEW ESTIMATE',
+        '   "M" SERVICIOS DE PISCINAS - INQUIRY',
         '----------------------------------------',
         '',
         `• Service Requested: ${service}`,
@@ -620,16 +620,16 @@
         `  ${details}`,
         '',
         '----------------------------------------',
-        'Thank you for contacting Servicios de Piscinas.'
+        'Thank you for contacting "M" Servicios de Piscinas.'
     ].join('\n');
 
-    window.location.href = `mailto:lraymondo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:Oquendomanuel269@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
     </script>
 
     <footer>
         <p>&copy; <span id="copyright-year">2026</span> "M" POOL SERVICES. All Rights Reserved.</p>
-        <p>Designed &amp; developed by <a href="mailto:lraymondo@gmail.com?Subject=SMJ Inspirations - Design Inquiry" style="color: white; text-decoration: underline;">SMJ Inspirations</a></p>
+        <p>Designed &amp; developed by <a href="mailto:Oquendomanuel269@gmail.com?Subject=SMJ Inspirations - Design Inquiry" style="color: white; text-decoration: underline;">SMJ Inspirations</a></p>
     </footer>
 
 </body>
